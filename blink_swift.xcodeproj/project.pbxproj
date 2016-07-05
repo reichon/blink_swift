@@ -14,6 +14,9 @@
 		B12A99411D23D6F400AEC214 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B12A993F1D23D6F400AEC214 /* LaunchScreen.storyboard */; };
 		B12A994E1D23D80800AEC214 /* MEMELib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12A994A1D23D7C000AEC214 /* MEMELib.framework */; };
 		B12A994F1D23D80800AEC214 /* MEMELib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B12A994A1D23D7C000AEC214 /* MEMELib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B13406EE1D26414900120758 /* meteor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B13406ED1D26414900120758 /* meteor.mp3 */; };
+		B13406F01D2641EB00120758 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13406EF1D2641EB00120758 /* AudioToolbox.framework */; };
+		B13406F21D2641F300120758 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13406F11D2641F300120758 /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,6 +43,9 @@
 		B12A99421D23D6F400AEC214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B12A994A1D23D7C000AEC214 /* MEMELib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MEMELib.framework; sourceTree = "<group>"; };
 		B12A99511D23D92600AEC214 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		B13406ED1D26414900120758 /* meteor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = meteor.mp3; sourceTree = "<group>"; };
+		B13406EF1D2641EB00120758 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B13406F11D2641F300120758 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B13406F21D2641F300120758 /* AVFoundation.framework in Frameworks */,
+				B13406F01D2641EB00120758 /* AudioToolbox.framework in Frameworks */,
 				B12A994E1D23D80800AEC214 /* MEMELib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +65,8 @@
 		B12A992A1D23D6F400AEC214 = {
 			isa = PBXGroup;
 			children = (
+				B13406F11D2641F300120758 /* AVFoundation.framework */,
+				B13406EF1D2641EB00120758 /* AudioToolbox.framework */,
 				B12A994A1D23D7C000AEC214 /* MEMELib.framework */,
 				B12A99351D23D6F400AEC214 /* blink_swift */,
 				B12A99341D23D6F400AEC214 /* Products */,
@@ -81,6 +91,7 @@
 				B12A993D1D23D6F400AEC214 /* Assets.xcassets */,
 				B12A993F1D23D6F400AEC214 /* LaunchScreen.storyboard */,
 				B12A99421D23D6F400AEC214 /* Info.plist */,
+				B13406ED1D26414900120758 /* meteor.mp3 */,
 			);
 			path = blink_swift;
 			sourceTree = "<group>";
@@ -150,6 +161,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B13406EE1D26414900120758 /* meteor.mp3 in Resources */,
 				B12A99411D23D6F400AEC214 /* LaunchScreen.storyboard in Resources */,
 				B12A993E1D23D6F400AEC214 /* Assets.xcassets in Resources */,
 				B12A993C1D23D6F400AEC214 /* Main.storyboard in Resources */,
@@ -285,7 +297,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rei.blink-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "blink_swift-BridgingHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = blink_swift/BridgingHeader.h;
 			};
 			name = Debug;
 		};
@@ -301,7 +313,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rei.blink-swift";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "blink_swift-BridgingHeader.h";
+				SWIFT_OBJC_BRIDGING_HEADER = blink_swift/BridgingHeader.h;
 			};
 			name = Release;
 		};
@@ -324,6 +336,7 @@
 				B12A99471D23D6F400AEC214 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

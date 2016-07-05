@@ -9,8 +9,8 @@
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
 
-#define JINS_MEME_APP_ID @""
-#define JINS_MEME_CLIENT_SECRET @""
+//#define JINS_MEME_APP_ID @""
+//#define JINS_MEME_CLIENT_SECRET @""
 
 #import <MEMELib/MEMELib.h>
 
