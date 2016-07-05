@@ -30,7 +30,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
         let url = NSURL(fileURLWithPath: path)
         player = try! AVAudioPlayer(contentsOfURL: url)
         
-        let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "tapped:")
+        let tapGesture:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapped(_:)))
         tapGesture.delegate = self;
         self.view.addGestureRecognizer(tapGesture)
     }
@@ -58,11 +58,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
         lblBlinkCnt.text = String(blinkCnt)
         print("tap")
         
-        if blinkCnt == 10 {
-            BrainMode.text = "sleep";
+        if blinkCnt % 10 == 0 {
+            BrainMode.text = "sleep"
+            player?.currentTime = 0
             player?.play()
         } else {
-            BrainMode.text = "alert";
+            BrainMode.text = "alert"
             player?.stop()
         }
     }
