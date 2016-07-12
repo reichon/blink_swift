@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -19,44 +20,57 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWN-oh-UvL">
                                 <rect key="frame" x="277" y="289" width="44" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="107" y="252" width="187" height="48"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6a-FE-mUN">
-                                <rect key="frame" x="378" y="94" width="47" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="177" y="725" width="47" height="21"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="37" y="252" width="326" height="48"/>
                                 </variation>
                             </label>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nsd-ms-fKs">
                                 <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="37" y="399" width="326" height="2"/>
-                                </variation>
                             </progressView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-Lx-z9e">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="197" y="428" width="24" height="21"/>
-                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6a-FE-mUN">
+                                <rect key="frame" x="378" y="94" width="47" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="Nsd-ms-fKs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9OB-KL-KD3"/>
+                            <constraint firstItem="V6a-FE-mUN" firstAttribute="top" secondItem="TwW-Lx-z9e" secondAttribute="bottom" constant="94" id="NAs-J7-a6g"/>
+                            <constraint firstItem="Nsd-ms-fKs" firstAttribute="top" secondItem="QWN-oh-UvL" secondAttribute="bottom" constant="99" id="Vxz-a6-6nS"/>
+                            <constraint firstItem="TwW-Lx-z9e" firstAttribute="top" secondItem="Nsd-ms-fKs" secondAttribute="bottom" constant="27" id="Vz0-Dh-NZa"/>
+                            <constraint firstItem="TwW-Lx-z9e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XTu-Th-vvK"/>
+                            <constraint firstItem="QWN-oh-UvL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="awe-Ob-Idt"/>
+                            <constraint firstItem="Nsd-ms-fKs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lzL-ex-0qF"/>
+                            <constraint firstItem="V6a-FE-mUN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ogH-Nr-NQ4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nsd-ms-fKs" secondAttribute="trailing" constant="17" id="qWv-ge-y1u"/>
+                        </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="Nsd-ms-fKs"/>
                                 <exclude reference="TwW-Lx-z9e"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="awe-Ob-Idt"/>
+                                <exclude reference="9OB-KL-KD3"/>
+                                <exclude reference="Vxz-a6-6nS"/>
+                                <exclude reference="lzL-ex-0qF"/>
+                                <exclude reference="qWv-ge-y1u"/>
+                                <exclude reference="Vz0-Dh-NZa"/>
+                                <exclude reference="XTu-Th-vvK"/>
+                                <exclude reference="NAs-J7-a6g"/>
+                                <exclude reference="ogH-Nr-NQ4"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -64,10 +78,18 @@
                                 <include reference="Nsd-ms-fKs"/>
                                 <include reference="TwW-Lx-z9e"/>
                             </mask>
+                            <mask key="constraints">
+                                <include reference="awe-Ob-Idt"/>
+                                <include reference="9OB-KL-KD3"/>
+                                <include reference="Vxz-a6-6nS"/>
+                                <include reference="lzL-ex-0qF"/>
+                                <include reference="qWv-ge-y1u"/>
+                                <include reference="Vz0-Dh-NZa"/>
+                                <include reference="XTu-Th-vvK"/>
+                                <include reference="NAs-J7-a6g"/>
+                                <include reference="ogH-Nr-NQ4"/>
+                            </mask>
                         </variation>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="ao7-Z7-4Af" appends="YES" id="h7K-Tx-Thh"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="hg0-op-WbG"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -76,12 +98,10 @@
                         <outlet property="BrainMode" destination="QWN-oh-UvL" id="KpA-Bh-Xhg"/>
                         <outlet property="SleepProgress" destination="Nsd-ms-fKs" id="saX-f2-pGw"/>
                         <outlet property="SleepProgressView" destination="TwW-Lx-z9e" id="A8f-wV-xsM"/>
-                        <outlet property="TapCount" destination="ao7-Z7-4Af" id="IXV-Ri-UF3"/>
                         <outlet property="lblBlinkCnt" destination="V6a-FE-mUN" id="zno-B1-U4b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="ao7-Z7-4Af"/>
             </objects>
             <point key="canvasLocation" x="1092" y="321"/>
         </scene>
