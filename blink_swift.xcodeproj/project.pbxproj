@@ -17,6 +17,7 @@
 		B13406EE1D26414900120758 /* meteor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B13406ED1D26414900120758 /* meteor.mp3 */; };
 		B13406F01D2641EB00120758 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13406EF1D2641EB00120758 /* AudioToolbox.framework */; };
 		B13406F21D2641F300120758 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13406F11D2641F300120758 /* AVFoundation.framework */; };
+		B1673DE81D348AB80041CAFC /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1673DE71D348AB80041CAFC /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -46,6 +47,7 @@
 		B13406ED1D26414900120758 /* meteor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = meteor.mp3; sourceTree = "<group>"; };
 		B13406EF1D2641EB00120758 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B13406F11D2641F300120758 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B1673DE71D348AB80041CAFC /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1673DE81D348AB80041CAFC /* CoreBluetooth.framework in Frameworks */,
 				B13406F21D2641F300120758 /* AVFoundation.framework in Frameworks */,
 				B13406F01D2641EB00120758 /* AudioToolbox.framework in Frameworks */,
 				B12A994E1D23D80800AEC214 /* MEMELib.framework in Frameworks */,
@@ -65,6 +68,7 @@
 		B12A992A1D23D6F400AEC214 = {
 			isa = PBXGroup;
 			children = (
+				B1673DE71D348AB80041CAFC /* CoreBluetooth.framework */,
 				B13406F11D2641F300120758 /* AVFoundation.framework */,
 				B13406EF1D2641EB00120758 /* AudioToolbox.framework */,
 				B12A994A1D23D7C000AEC214 /* MEMELib.framework */,

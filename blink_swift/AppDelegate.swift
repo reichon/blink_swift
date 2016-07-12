@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        MEMELib.setAppClientId("864254114071354", clientSecret: "nine0rkd3z0xm14lr9uvyzavmimc6h3k")
         return true
     }
 
@@ -40,11 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
-//    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-//        MEMELib.setAppClientId("<発行されたアプリID>", clientSecret: "<発行されたアプリSecret>")
-//        return true
-//    }
 
 
 }
