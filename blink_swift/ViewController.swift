@@ -10,28 +10,61 @@ import UIKit
 import AVFoundation
 import AudioToolbox
 import CoreBluetooth
+import MediaPlayer
 
 class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDelegate {
-    //瞬き回数
-    var blinkCnt = 0
-    var count = 0
     
-    var player: AVAudioPlayer?
     
     //瞬き検知した回数を表示
     @IBOutlet weak var lblBlinkCnt: UILabel!
     @IBOutlet weak var BrainMode: UILabel!
     @IBOutlet weak var SleepProgress: UIProgressView!
     @IBOutlet weak var SleepProgressView: UILabel!
-    @IBOutlet weak var BTdetect: UIButton!
+    @IBOutlet weak var StopMusic: UIButton!
+    
+    //瞬き回数
+    var blinkCnt = 0
+    var count = 0
+    
+    //    let player =
+    let player1 = MPMusicPlayerController.applicationMusicPlayer()
+    let speech = AVSpeechSynthesizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         MEMELib.sharedInstance().delegate = self
-        let path = NSBundle.mainBundle().pathForResource("meteor", ofType: "mp3")!
-        let url = NSURL(fileURLWithPath: path)
-        player = try! AVAudioPlayer(contentsOfURL: url)
+        
+        let query = MPMediaQuery.songsQuery()
+        
+        guard let songs = query.items else {
+            print("song not found")
+            return
+        }
+        
+        let index = Int(arc4random_uniform(UInt32(songs.count)))
+        let song = songs[index]
+        
+        player1.setQueueWithQuery(query)
+        player1.nowPlayingItem = song
     }
+    
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+//        
+//        let query = MPMediaQuery.songsQuery()
+//        
+//        guard let songs = query.items else {
+//            print("song not found")
+//            return
+//        }
+//        
+//        let index = Int(arc4random_uniform(UInt32(songs.count)))
+//        let song = songs[index]
+//        
+//        let player1 = MPMusicPlayerController.applicationMusicPlayer()
+//        player1.setQueueWithQuery(query)
+//        player1.nowPlayingItem = song
+//    }
     
     func memeAppAuthorized(status: MEMEStatus) {
         MEMELib.sharedInstance().startScanningPeripherals()
@@ -60,27 +93,18 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
             alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
             presentViewController(alert, animated: true, completion: nil)
         }
-        
-//        if status == MEME_ERROR_APP_AUTH {
-//            let alert = UIAlertController(title: "App Auth Failed", message: "Invalid Application ID or Client Secret", preferredStyle: .Alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-//            presentViewController(alert, animated: true, completion: nil)
-//        } else if status == MEME_ERROR_SDK_AUTH{
-//            UIAlertView(title: "SDK Auth Failed", message: "Invalid SDK. Please update to the latest SDK.", delegate: nil, cancelButtonTitle: "OK").show()
-//        } else if status == MEME_CMD_INVALID {
-//            UIAlertView(title: "SDK Error", message: "Invalid Command", delegate: nil, cancelButtonTitle: "OK").show()
-//        } else if status == MEME_ERROR_BL_OFF {
-//            UIAlertView(title: "Error", message: "Bluetooth is off.", delegate: nil, cancelButtonTitle: "OK").show()
-//        } else if status == MEME_OK {
-//            print("Status: MEME_OK")
-//        }
     }
     
     func memeRealTimeModeDataReceived(data: MEMERealTimeData!) {
-        print(data.description)
+        print(data.blinkSpeed, data.blinkStrength, data.accY)
+        
+        let speechUtterance = AVSpeechUtterance(string: BrainMode.text!)
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
         
         if Float(data.blinkSpeed) > 0 {
-        SleepProgress.setProgress((Float(data.blinkSpeed) - 80.0) / 100.0, animated: true)
+            SleepProgress.setProgress((Float(data.blinkSpeed) - 147.0) / 100.0, animated: true)
+            blinkCnt += 1
+            SleepProgressView.text = String(Float(data.blinkSpeed) - 147.0)
         }
         
         lblBlinkCnt.text = String(blinkCnt)
@@ -94,34 +118,38 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
 //            player?.play()
 //        }
         
-//        if Float(data.blinkSpeed) < 130.0 {
-//            BrainMode.text = "you are in ALERT mode"
-//            player?.stop()
-//        } else if Float(data.blinkSpeed) > 230.0{
-//            BrainMode.text = "you are in SLEEP mode"
-//            player?.currentTime = 0
-//            player?.play()
-//        } else if Float(data.blinkSpeed) > 180.0{
-//            BrainMode.text = "take a rest"
-//            player?.stop()
+        if Float(data.blinkSpeed) > 147.0 && Float(data.blinkSpeed) < 157.0 {
+            BrainMode.text = "警戒状態です"
+            player1.stop()
+        } else if Float(data.blinkSpeed) > 230.0{
+            BrainMode.text = "今すぐ休憩してください"
+            speech.speakUtterance(speechUtterance)
+            player1.skipToNextItem()
+            player1.play()
+        } else if Float(data.blinkSpeed) > 180.0{
+            BrainMode.text = "窓を開けましょう"
+            speech.speakUtterance(speechUtterance)
+            player1.stop()
+        }
+        
+//        if Float(data.blinkSpeed) > 80.0 && Float(data.blinkSpeed) < 120.0 {
+//            BrainMode.text = "警戒状態です"
+//        } else if Float(data.blinkSpeed) > 180.0 {
+//            BrainMode.text = "今すぐ休憩してください"
+//            speech.speakUtterance(speechUtterance)
+//            player1.skipToNextItem()
+//            player1.play()
+//        } else if Float(data.blinkSpeed) > 140.0{
+//            BrainMode.text = "窓を開けましょう"
+//            speech.speakUtterance(speechUtterance)
 //        }
         
-        if Float(data.blinkSpeed) < 80.0 {
-            BrainMode.text = "you are in ALERT mode"
-            player?.stop()
-        } else if Float(data.blinkSpeed) > 180.0{
-            BrainMode.text = "you are in SLEEP mode"
-            player?.currentTime = 0
-            player?.play()
-        } else if Float(data.blinkSpeed) > 140.0{
-            BrainMode.text = "take a rest"
-            player?.stop()
-        }
-        
         // 頭が下を向いていたら忠告
-        if data.accY > 7 {
-            AudioServicesPlaySystemSound(1003)
-        }
+//        if data.accY > 7 {
+//            AudioServicesPlaySystemSound(1108)
+//        }
+        
+        
     }
     
     override func didReceiveMemoryWarning() {
