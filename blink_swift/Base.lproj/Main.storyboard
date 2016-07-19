@@ -37,19 +37,13 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Count" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V6a-FE-mUN">
-                                <rect key="frame" x="378" y="94" width="47" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="177" y="520" width="47" height="21"/>
-                                </variation>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdz-p0-bkh">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <gestureRecognizers/>
                                 <state key="normal" title="Stop Music"/>
+                                <variation key="heightClass=regular-widthClass=compact" ambiguous="YES" misplaced="YES">
+                                    <rect key="frame" x="162" y="739" width="77" height="30"/>
+                                </variation>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="8zV-mC-1dR" appends="YES" id="XFi-Y9-kWA"/>
                                 </connections>
@@ -60,15 +54,12 @@
                         <constraints>
                             <constraint firstItem="Xdz-p0-bkh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="142" id="3Rb-jU-04Y"/>
                             <constraint firstItem="Nsd-ms-fKs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9OB-KL-KD3"/>
-                            <constraint firstItem="V6a-FE-mUN" firstAttribute="top" secondItem="TwW-Lx-z9e" secondAttribute="bottom" constant="94" id="NAs-J7-a6g"/>
                             <constraint firstItem="Nsd-ms-fKs" firstAttribute="top" secondItem="QWN-oh-UvL" secondAttribute="bottom" constant="99" id="Vxz-a6-6nS"/>
                             <constraint firstItem="TwW-Lx-z9e" firstAttribute="top" secondItem="Nsd-ms-fKs" secondAttribute="bottom" constant="27" id="Vz0-Dh-NZa"/>
                             <constraint firstItem="TwW-Lx-z9e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XTu-Th-vvK"/>
                             <constraint firstItem="QWN-oh-UvL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="awe-Ob-Idt"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Xdz-p0-bkh" secondAttribute="trailing" constant="141" id="bEE-h6-Tg6"/>
                             <constraint firstItem="Nsd-ms-fKs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lzL-ex-0qF"/>
-                            <constraint firstItem="Xdz-p0-bkh" firstAttribute="top" secondItem="V6a-FE-mUN" secondAttribute="bottom" constant="175" id="n6O-Pc-wCQ"/>
-                            <constraint firstItem="V6a-FE-mUN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ogH-Nr-NQ4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Nsd-ms-fKs" secondAttribute="trailing" constant="17" id="qWv-ge-y1u"/>
                         </constraints>
                         <variation key="default">
@@ -84,11 +75,8 @@
                                 <exclude reference="qWv-ge-y1u"/>
                                 <exclude reference="3Rb-jU-04Y"/>
                                 <exclude reference="bEE-h6-Tg6"/>
-                                <exclude reference="n6O-Pc-wCQ"/>
                                 <exclude reference="Vz0-Dh-NZa"/>
                                 <exclude reference="XTu-Th-vvK"/>
-                                <exclude reference="NAs-J7-a6g"/>
-                                <exclude reference="ogH-Nr-NQ4"/>
                                 <exclude reference="awe-Ob-Idt"/>
                             </mask>
                         </variation>
@@ -105,11 +93,8 @@
                                 <include reference="qWv-ge-y1u"/>
                                 <include reference="3Rb-jU-04Y"/>
                                 <include reference="bEE-h6-Tg6"/>
-                                <include reference="n6O-Pc-wCQ"/>
                                 <include reference="Vz0-Dh-NZa"/>
                                 <include reference="XTu-Th-vvK"/>
-                                <include reference="NAs-J7-a6g"/>
-                                <include reference="ogH-Nr-NQ4"/>
                                 <include reference="awe-Ob-Idt"/>
                             </mask>
                         </variation>
@@ -122,12 +107,15 @@
                         <outlet property="SleepProgress" destination="Nsd-ms-fKs" id="saX-f2-pGw"/>
                         <outlet property="SleepProgressView" destination="TwW-Lx-z9e" id="A8f-wV-xsM"/>
                         <outlet property="StopMusic" destination="Xdz-p0-bkh" id="sZg-AQ-NgW"/>
-                        <outlet property="lblBlinkCnt" destination="V6a-FE-mUN" id="zno-B1-U4b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <customObject id="xlH-Eb-9ds"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="8zV-mC-1dR"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="8zV-mC-1dR">
+                    <connections>
+                        <action selector="TapButton:" destination="BYZ-38-t0r" id="d5Y-Ja-g56"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1092" y="321"/>
         </scene>
