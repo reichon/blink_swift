@@ -29,7 +29,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
     @IBOutlet weak var StopMusic: UIButton!
     
     //瞬き回数
-    var blinkCnt = 0
     var count = 0
     var Alert = ""
     
@@ -38,10 +37,9 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
     
     var msecs : [Float] = []
     var freq : Float = 0.0
+
     
-//    var KSS = 0
-    
-    var timer: NSTimer?
+    var timer: NSDate?
     var startDate: NSDate?
 
     var status: Status = .Normal {
@@ -78,6 +76,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
             return
         }
         
+        
+        
         let index = Int(arc4random_uniform(UInt32(songs.count)))
         let song = songs[index]
         
@@ -87,9 +87,10 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
         player1.repeatMode = .None
     }
 
-//    override func viewDidAppear(animated: Bool) {
-//        startDate = NSDate()
-//    }
+    override func viewDidAppear(animated: Bool) {
+        startDate = NSDate()
+        timer = NSDate()
+    }
     
     @IBAction func TapButton(sender: UILongPressGestureRecognizer) {
         if(sender.state == UIGestureRecognizerState.Ended){
@@ -127,132 +128,141 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
     }
     
     func memeRealTimeModeDataReceived(data: MEMERealTimeData!) {
-        
+        // 5分関係なくいつも実行される
         if Float(data.blinkSpeed) > 70 {
             msecs.append(Float(data.blinkSpeed))
         }
         
-        // 5分関係なくいつも実行される
-        
+        // 実際
 //        guard -(startDate!.timeIntervalSinceNow) >= 5 * 60 else {
 //            // 5分経ってないときだけ
 //        
-//            Middle.append(Float(data.blinkSpeed))
+//            if Float(data.blinkSpeed) > 70 {
+//                Middle.append(Float(data.blinkSpeed))
+//            }
+//            
 //            MiddleFreq = Middle.reduce(0, combine: +) / Float(Middle.count)
+//            
+//            BrainMode.text = "計測中"
+//            
+////            print(data.blinkSpeed)
+//            
 //            return
 //        }
         
+        MiddleFreq = 150.0
         
-        print(data.blinkSpeed, freq)
+//        print(data.blinkSpeed, freq, MiddleFreq)
+        
         
         // 5分経ったあとだけ
-        print(msecs)
-        msecs = Array(msecs.suffix(10))
-        guard msecs.count == 10 else {
-            return
-        }
-        freq = msecs.reduce(0, combine: +) / Float(msecs.count)
+//        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(add), userInfo: nil, repeats: true)
+ 
         
-//        if freq > 90.0 && freq < 108.0 {
-//            KSS = 1
-//        } else if freq > 108.0 && freq < 112.0 {
-//            KSS = 2
-//        } else if freq >= 112.0 && freq < 114.0 {
-//            KSS = 3
-//        } else if freq >= 114.0 && freq < 116.0 {
-//            KSS = 4
-//        } else if freq >= 116.0 && freq < 119.0 {
-//            KSS = 5
-//        } else if freq >= 119.0 && freq < 121.0 {
-//            KSS = 6
-//        } else if freq >= 121.0 && freq < 135.0 {
-//            KSS = 7
-//        } else if freq >= 135.0 && freq < 145.0 {
-//            KSS = 8
-//        } else if freq >= 145.0 && freq < 155.0 {
-//            KSS = 9
+//        msecs = Array(msecs.suffix(20))
+//        guard msecs.count == 20 else {
+//            return
 //        }
         
-        
-        
+        guard -(timer!.timeIntervalSinceNow) % 60 == 0 else {
+            freq = msecs.reduce(0, combine: +) / Float(msecs.count)
+            return
+        }
+
+        msecs = []
+
         let speechUtterance = AVSpeechUtterance(string: Alert)
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
 
-        guard freq >= 100.0 else {
-            BrainMode.text = "計測中"
-            return
-        }
         
-        SleepProgress.setProgress((freq - 100.0) / 100.0, animated: true)
-        blinkCnt += 1
-        SleepProgressView.text = String((freq - 100.0))
+        // 実際
+        SleepProgress.setProgress((freq - (0.75 * MiddleFreq - 20.0)) / 100.0, animated: true)
+        SleepProgressView.text = String(freq - (0.75 * MiddleFreq - 20.0))
         
-        if freq <= 100.0 {
+        // 動画用
+//        SleepProgress.setProgress((freq - 60.0) / 100.0, animated: true)
+//        SleepProgressView.text = String(freq - 60.0)
+
+//        if freq <= 60.0 {
+//            BrainMode.text = "警戒状態です"
+//            status = .Alert
+//        } else if freq > 60.0 && freq < 110.0 {
+//            BrainMode.text = "正常状態です"
+//            status = .Normal
+//        } else if freq >= 110.0 && freq < 140.0 {
+//            BrainMode.text = "微・危険状態です"
+//            Alert = "眠気を少し感知しました、窓を開けましょう"
+//            
+//            if !speech.speaking {
+//                speech.speakUtterance(speechUtterance)
+//            }
+//            
+//            status = .Danger
+//        } else if freq >= 140.0 {
+//            BrainMode.text = "超・危険状態です"
+//            Alert = "今すぐ休憩してください"
+//            
+//            if !speech.speaking {
+//                speech.speakUtterance(speechUtterance)
+//            }
+//            
+//            status = .Death
+//        }
+
+        // 実際
+        if freq >= 0.75 * MiddleFreq - 20.0 && freq <= 0.75 * MiddleFreq + 20.0 {
             BrainMode.text = "警戒状態です"
             status = .Alert
-        } else if freq > 100.0 && freq < 130.0 {
+        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 20 {
             BrainMode.text = "正常状態です"
             status = .Normal
-        } else if freq >= 130.0 && freq < 150.0 {
+        } else if freq >= MiddleFreq + 20 && freq < MiddleFreq + 30 {
             BrainMode.text = "微・危険状態です"
             Alert = "眠気を少し感知しました、窓を開けましょう"
-            
             if !speech.speaking {
                 speech.speakUtterance(speechUtterance)
             }
-            
             status = .Danger
-        } else if freq >= 150.0 {
+        } else if freq >= MiddleFreq + 30 {
             BrainMode.text = "超・危険状態です"
-            Alert = "今すぐ休憩してください"
-            speech.speakUtterance(speechUtterance)
-            
             status = .Death
         }
-//
+        
+    }
+    
+//    func add(data: MEMERealTimeData!) {
+//        
+//        
+//        print(MiddleFreq, freq)
+//        
+//        msecs = []
+//        
+//        let speechUtterance = AVSpeechUtterance(string: Alert)
+//        speechUtterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
+//        
+//        
+//        // 実際
+//        SleepProgress.setProgress((freq - (0.75 * MiddleFreq - 20.0)) / 100.0, animated: true)
+//        SleepProgressView.text = String(freq - (0.75 * MiddleFreq - 20.0))
+//        
 //        if freq >= 0.75 * MiddleFreq - 20.0 && freq <= 0.75 * MiddleFreq + 20.0 {
 //            BrainMode.text = "警戒状態です"
-//            player1.stop()
-//        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 10 {
+//            status = .Alert
+//        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 20 {
 //            BrainMode.text = "正常状態です"
-//            player1.stop()
-//        } else if freq >= MiddleFreq + 10 && freq < MiddleFreq + 20 {
+//            status = .Normal
+//        } else if freq >= MiddleFreq + 20 && freq < MiddleFreq + 30 {
 //            BrainMode.text = "微・危険状態です"
 //            Alert = "眠気を少し感知しました、窓を開けましょう"
-//            speech.speakUtterance(speechUtterance)
-//            player1.stop()
-//        } else if freq >= MiddleFreq + 20 {
+//            if !speech.speaking {
+//                speech.speakUtterance(speechUtterance)
+//            }
+//            status = .Danger
+//        } else if freq >= MiddleFreq + 30 {
 //            BrainMode.text = "超・危険状態です"
-//            Alert = "今すぐ休憩してください"
-//            speech.speakUtterance(speechUtterance)
-//            player1.skipToNextItem()
-//            player1.play()
+//            status = .Death
 //        }
-        
-//        switch KSS {
-//        case 1,2,3,4,5:
-//            BrainMode.text = "警戒状態です"
-//            player1.stop()
-//        case 6,7:
-//            BrainMode.text = "窓を開けたりガムを噛むと良いですよ"
-//            speech.speakUtterance(speechUtterance)
-//            player1.stop()
-//        case 8,9:
-//            BrainMode.text = "今すぐ休憩してください"
-//            speech.speakUtterance(speechUtterance)
-//            player1.skipToNextItem()
-//            player1.play()
-//        default:
-//            BrainMode.text = "計測中"
-//            speech.speakUtterance(speechUtterance)
-//            break
-//        }
-        
-        // 頭が下を向いていたら忠告
-//        if data.accY > 7 {
-//            AudioServicesPlaySystemSound(1108)
-//        }
-    }
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
