@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,94 +18,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="400" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Mode" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWN-oh-UvL">
-                                <rect key="frame" x="277" y="289" width="44" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="測定中" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4x-NI-wxB">
+                                <rect key="frame" x="60" y="138" width="280" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="37" y="252" width="326" height="48"/>
-                                </variation>
                             </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nsd-ms-fKs">
-                                <rect key="frame" x="0.0" y="-2" width="150" height="2"/>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="747" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yS1-eM-Yeg">
+                                <rect key="frame" x="60" y="208" width="280" height="2"/>
                             </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-Lx-z9e">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UeU-5R-XBA">
+                                <rect key="frame" x="126" y="553" width="149" height="47"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Stop Music"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFg-Qy-hBB">
+                                <rect key="frame" x="162" y="255" width="77" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdz-p0-bkh">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <gestureRecognizers/>
-                                <state key="normal" title="Stop Music"/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="8zV-mC-1dR" appends="YES" id="XFi-Y9-kWA"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Xdz-p0-bkh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="142" id="3Rb-jU-04Y"/>
-                            <constraint firstItem="Nsd-ms-fKs" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="9OB-KL-KD3"/>
-                            <constraint firstItem="Xdz-p0-bkh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="719" id="BKC-aW-g9N"/>
-                            <constraint firstItem="Nsd-ms-fKs" firstAttribute="top" secondItem="QWN-oh-UvL" secondAttribute="bottom" constant="99" id="Vxz-a6-6nS"/>
-                            <constraint firstItem="TwW-Lx-z9e" firstAttribute="top" secondItem="Nsd-ms-fKs" secondAttribute="bottom" constant="27" id="Vz0-Dh-NZa"/>
-                            <constraint firstItem="TwW-Lx-z9e" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XTu-Th-vvK"/>
-                            <constraint firstItem="QWN-oh-UvL" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="awe-Ob-Idt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Xdz-p0-bkh" secondAttribute="trailing" constant="141" id="bEE-h6-Tg6"/>
-                            <constraint firstItem="Nsd-ms-fKs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lzL-ex-0qF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Nsd-ms-fKs" secondAttribute="trailing" constant="17" id="qWv-ge-y1u"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="yS1-eM-Yeg" secondAttribute="trailing" constant="40" id="2Jw-7Q-f68"/>
+                            <constraint firstItem="u4x-NI-wxB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="3Z2-n3-6VV"/>
+                            <constraint firstItem="yS1-eM-Yeg" firstAttribute="top" secondItem="u4x-NI-wxB" secondAttribute="bottom" constant="8" id="IRr-Ig-S9G"/>
+                            <constraint firstItem="u4x-NI-wxB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="136" id="IsH-Z1-Opd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="u4x-NI-wxB" secondAttribute="trailing" constant="40" id="N5P-d8-XRp"/>
+                            <constraint firstItem="cFg-Qy-hBB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="THk-kb-vHd"/>
+                            <constraint firstItem="yS1-eM-Yeg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="XQQ-qt-ykG"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UeU-5R-XBA" secondAttribute="bottom" constant="200" id="aXL-Vo-GOi"/>
+                            <constraint firstItem="cFg-Qy-hBB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="192" id="nXs-ke-LrF"/>
+                            <constraint firstItem="UeU-5R-XBA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xpS-uo-kTS"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="Nsd-ms-fKs"/>
-                                <exclude reference="TwW-Lx-z9e"/>
-                                <exclude reference="Xdz-p0-bkh"/>
-                            </mask>
-                            <mask key="constraints">
-                                <exclude reference="awe-Ob-Idt"/>
-                                <exclude reference="9OB-KL-KD3"/>
-                                <exclude reference="Vxz-a6-6nS"/>
-                                <exclude reference="lzL-ex-0qF"/>
-                                <exclude reference="qWv-ge-y1u"/>
-                                <exclude reference="Vz0-Dh-NZa"/>
-                                <exclude reference="XTu-Th-vvK"/>
-                                <exclude reference="3Rb-jU-04Y"/>
-                                <exclude reference="BKC-aW-g9N"/>
-                                <exclude reference="bEE-h6-Tg6"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="Nsd-ms-fKs"/>
-                                <include reference="TwW-Lx-z9e"/>
-                                <include reference="Xdz-p0-bkh"/>
-                            </mask>
-                            <mask key="constraints">
-                                <include reference="awe-Ob-Idt"/>
-                                <include reference="9OB-KL-KD3"/>
-                                <include reference="Vxz-a6-6nS"/>
-                                <include reference="lzL-ex-0qF"/>
-                                <include reference="qWv-ge-y1u"/>
-                                <include reference="Vz0-Dh-NZa"/>
-                                <include reference="XTu-Th-vvK"/>
-                                <include reference="3Rb-jU-04Y"/>
-                                <include reference="BKC-aW-g9N"/>
-                                <include reference="bEE-h6-Tg6"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="hg0-op-WbG"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="400" height="800"/>
                     <connections>
-                        <outlet property="BrainMode" destination="QWN-oh-UvL" id="KpA-Bh-Xhg"/>
-                        <outlet property="SleepProgress" destination="Nsd-ms-fKs" id="saX-f2-pGw"/>
-                        <outlet property="SleepProgressView" destination="TwW-Lx-z9e" id="A8f-wV-xsM"/>
-                        <outlet property="StopMusic" destination="Xdz-p0-bkh" id="sZg-AQ-NgW"/>
+                        <outlet property="BrainMode" destination="u4x-NI-wxB" id="5bt-PH-GJG"/>
+                        <outlet property="SleepProgress" destination="yS1-eM-Yeg" id="NYW-AI-zFe"/>
+                        <outlet property="SleepProgressView" destination="cFg-Qy-hBB" id="q5G-bS-Ntn"/>
+                        <outlet property="StopMusic" destination="UeU-5R-XBA" id="6km-Py-lLN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -114,10 +69,11 @@
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="8zV-mC-1dR">
                     <connections>
                         <action selector="TapButton:" destination="BYZ-38-t0r" id="d5Y-Ja-g56"/>
+                        <outlet property="delegate" destination="UeU-5R-XBA" id="8L9-yq-0hA"/>
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1092" y="321"/>
+            <point key="canvasLocation" x="1092" y="301"/>
         </scene>
     </scenes>
 </document>

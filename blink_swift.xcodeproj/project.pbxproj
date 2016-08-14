@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B10508121D3559FE009AA47D /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B10508111D3559FE009AA47D /* MediaPlayer.framework */; };
+		B113EAE31D4B5FF200D13349 /* earthquake.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B113EAE21D4B5FF200D13349 /* earthquake.mp3 */; };
 		B12A99371D23D6F400AEC214 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12A99361D23D6F400AEC214 /* AppDelegate.swift */; };
 		B12A99391D23D6F400AEC214 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12A99381D23D6F400AEC214 /* ViewController.swift */; };
 		B12A993C1D23D6F400AEC214 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B12A993A1D23D6F400AEC214 /* Main.storyboard */; };
@@ -15,9 +16,9 @@
 		B12A99411D23D6F400AEC214 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B12A993F1D23D6F400AEC214 /* LaunchScreen.storyboard */; };
 		B12A994E1D23D80800AEC214 /* MEMELib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B12A994A1D23D7C000AEC214 /* MEMELib.framework */; };
 		B12A994F1D23D80800AEC214 /* MEMELib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B12A994A1D23D7C000AEC214 /* MEMELib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B13406EE1D26414900120758 /* meteor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B13406ED1D26414900120758 /* meteor.mp3 */; };
 		B13406F01D2641EB00120758 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13406EF1D2641EB00120758 /* AudioToolbox.framework */; };
 		B13406F21D2641F300120758 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13406F11D2641F300120758 /* AVFoundation.framework */; };
+		B14BEB0B1D4BDA3200C76A53 /* destiny.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = B14BEB0A1D4BDA3200C76A53 /* destiny.mp3 */; };
 		B1673DE81D348AB80041CAFC /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1673DE71D348AB80041CAFC /* CoreBluetooth.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		B10508111D3559FE009AA47D /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B113EAE21D4B5FF200D13349 /* earthquake.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = earthquake.mp3; sourceTree = "<group>"; };
 		B12A99331D23D6F400AEC214 /* blink_swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = blink_swift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B12A99361D23D6F400AEC214 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B12A99381D23D6F400AEC214 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,9 +48,9 @@
 		B12A99421D23D6F400AEC214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B12A994A1D23D7C000AEC214 /* MEMELib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MEMELib.framework; sourceTree = "<group>"; };
 		B12A99511D23D92600AEC214 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
-		B13406ED1D26414900120758 /* meteor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = meteor.mp3; sourceTree = "<group>"; };
 		B13406EF1D2641EB00120758 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		B13406F11D2641F300120758 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		B14BEB0A1D4BDA3200C76A53 /* destiny.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = destiny.mp3; sourceTree = "<group>"; };
 		B1673DE71D348AB80041CAFC /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -99,7 +101,8 @@
 				B12A993D1D23D6F400AEC214 /* Assets.xcassets */,
 				B12A993F1D23D6F400AEC214 /* LaunchScreen.storyboard */,
 				B12A99421D23D6F400AEC214 /* Info.plist */,
-				B13406ED1D26414900120758 /* meteor.mp3 */,
+				B113EAE21D4B5FF200D13349 /* earthquake.mp3 */,
+				B14BEB0A1D4BDA3200C76A53 /* destiny.mp3 */,
 			);
 			path = blink_swift;
 			sourceTree = "<group>";
@@ -169,7 +172,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B13406EE1D26414900120758 /* meteor.mp3 in Resources */,
+				B14BEB0B1D4BDA3200C76A53 /* destiny.mp3 in Resources */,
+				B113EAE31D4B5FF200D13349 /* earthquake.mp3 in Resources */,
 				B12A99411D23D6F400AEC214 /* LaunchScreen.storyboard in Resources */,
 				B12A993E1D23D6F400AEC214 /* Assets.xcassets in Resources */,
 				B12A993C1D23D6F400AEC214 /* Main.storyboard in Resources */,

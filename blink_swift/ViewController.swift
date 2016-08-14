@@ -38,10 +38,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
     var msecs : [Float] = []
     var freq : Float = 0.0
 
+    var KSS = 2
     
-    var timer: NSDate?
+    var timer: NSTimer? = nil
     var startDate: NSDate?
-
+    
+    var player: AVAudioPlayer!
+    let player1 = MPMusicPlayerController.applicationMusicPlayer()
+    let speech = AVSpeechSynthesizer()
+    
     var status: Status = .Normal {
         didSet(oldStatus) {
             guard status != oldStatus else {
@@ -50,24 +55,37 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
             
             switch status {
             case .Alert:
-                player1.stop()
+//                player1.stop()
+                player?.stop()
             case .Normal:
-                player1.stop()
+//                player1.stop()
+                player?.stop()
             case .Danger:
-                player1.stop()
+                player?.stop()
+//                player1.stop()
+                
+//                player1.skipToNextItem()
+//                player1.play()
+                
             case .Death:
-                player1.skipToNextItem()
-                player1.play()
+//                if player1.playbackState == .Playing {
+//                    player1.stop()
+//                }
+//                player1.skipToNextItem()
+//                player1.play()
+                
+                player?.play()
             }
         }
     }
     
-    let player1 = MPMusicPlayerController.applicationMusicPlayer()
-    let speech = AVSpeechSynthesizer()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         MEMELib.sharedInstance().delegate = self
+        
+        let path = NSBundle.mainBundle().pathForResource("destiny", ofType: "mp3")!
+        let url = NSURL(fileURLWithPath: path)
+        player = try! AVAudioPlayer(contentsOfURL: url)
         
         let query = MPMediaQuery.songsQuery()
         
@@ -75,8 +93,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
             print("song not found")
             return
         }
-        
-        
         
         let index = Int(arc4random_uniform(UInt32(songs.count)))
         let song = songs[index]
@@ -89,12 +105,16 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
 
     override func viewDidAppear(animated: Bool) {
         startDate = NSDate()
-        timer = NSDate()
     }
     
     @IBAction func TapButton(sender: UILongPressGestureRecognizer) {
         if(sender.state == UIGestureRecognizerState.Ended){
-            player1.stop()
+//            if player1.playbackState == .Playing{
+//                player1.stop()
+//            }
+            if ((player?.playing.boolValue) != nil){
+                player?.stop()
+            }
         }
     }
     
@@ -110,6 +130,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
         print("device connected")
         let status = MEMELib.sharedInstance().startDataReport()
         print(status)
+        print("Ready to Blink")
     }
     
     func checkMEMEStatus(status:MEMEStatus) {
@@ -121,7 +142,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
             alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
             presentViewController(alert, animated: true, completion: nil)
         default:
-            let alert = UIAlertController(title: "Error", message: "sonota", preferredStyle: .Alert)
+            let alert = UIAlertController(title: "Error", message: "else", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
             presentViewController(alert, animated: true, completion: nil)
         }
@@ -129,9 +150,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
     
     func memeRealTimeModeDataReceived(data: MEMERealTimeData!) {
         // 5分関係なくいつも実行される
-        if Float(data.blinkSpeed) > 70 {
-            msecs.append(Float(data.blinkSpeed))
-        }
+        
         
         // 実際
 //        guard -(startDate!.timeIntervalSinceNow) >= 5 * 60 else {
@@ -145,85 +164,46 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
 //            
 //            BrainMode.text = "計測中"
 //            
-////            print(data.blinkSpeed)
-//            
 //            return
 //        }
         
-        MiddleFreq = 150.0
-        
-//        print(data.blinkSpeed, freq, MiddleFreq)
-        
+        MiddleFreq = 163.0
+        freq = 200.0
         
         // 5分経ったあとだけ
-//        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(add), userInfo: nil, repeats: true)
- 
         
-//        msecs = Array(msecs.suffix(20))
-//        guard msecs.count == 20 else {
-//            return
+//        if timer == nil {
+//            timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(add), userInfo: nil, repeats: true)
 //        }
-        
-        guard -(timer!.timeIntervalSinceNow) % 60 == 0 else {
-            freq = msecs.reduce(0, combine: +) / Float(msecs.count)
-            return
-        }
-
-        msecs = []
-
+//        
+//        if Float(data.blinkSpeed) > 70 {
+//            msecs.append(Float(data.blinkSpeed))
+//            
+//        }
+//        
+//        freq = msecs.reduce(0, combine: +) / Float(msecs.count)
+ 
         let speechUtterance = AVSpeechUtterance(string: Alert)
         speechUtterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
 
-        
-        // 実際
         SleepProgress.setProgress((freq - (0.75 * MiddleFreq - 20.0)) / 100.0, animated: true)
         SleepProgressView.text = String(freq - (0.75 * MiddleFreq - 20.0))
-        
-        // 動画用
-//        SleepProgress.setProgress((freq - 60.0) / 100.0, animated: true)
-//        SleepProgressView.text = String(freq - 60.0)
 
-//        if freq <= 60.0 {
-//            BrainMode.text = "警戒状態です"
-//            status = .Alert
-//        } else if freq > 60.0 && freq < 110.0 {
-//            BrainMode.text = "正常状態です"
-//            status = .Normal
-//        } else if freq >= 110.0 && freq < 140.0 {
-//            BrainMode.text = "微・危険状態です"
-//            Alert = "眠気を少し感知しました、窓を開けましょう"
-//            
-//            if !speech.speaking {
-//                speech.speakUtterance(speechUtterance)
-//            }
-//            
-//            status = .Danger
-//        } else if freq >= 140.0 {
-//            BrainMode.text = "超・危険状態です"
-//            Alert = "今すぐ休憩してください"
-//            
-//            if !speech.speaking {
-//                speech.speakUtterance(speechUtterance)
-//            }
-//            
-//            status = .Death
-//        }
-
-        // 実際
+//         実際
         if freq >= 0.75 * MiddleFreq - 20.0 && freq <= 0.75 * MiddleFreq + 20.0 {
             BrainMode.text = "警戒状態です"
             status = .Alert
-        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 20 {
+        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 5 {
             BrainMode.text = "正常状態です"
             status = .Normal
-        } else if freq >= MiddleFreq + 20 && freq < MiddleFreq + 30 {
+        } else if freq >= MiddleFreq + 5 && freq < MiddleFreq + 20 {
             BrainMode.text = "微・危険状態です"
             Alert = "眠気を少し感知しました、窓を開けましょう"
             if !speech.speaking {
                 speech.speakUtterance(speechUtterance)
             }
             status = .Danger
-        } else if freq >= MiddleFreq + 30 {
+        } else if freq >= MiddleFreq + 20 {
             BrainMode.text = "超・危険状態です"
             status = .Death
         }
@@ -232,8 +212,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
     
 //    func add(data: MEMERealTimeData!) {
 //        
-//        
 //        print(MiddleFreq, freq)
+//        print(msecs)
 //        
 //        msecs = []
 //        
@@ -242,23 +222,23 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
 //        
 //        
 //        // 実際
-//        SleepProgress.setProgress((freq - (0.75 * MiddleFreq - 20.0)) / 100.0, animated: true)
-//        SleepProgressView.text = String(freq - (0.75 * MiddleFreq - 20.0))
+//        SleepProgress.setProgress((freq - (0.75 * MiddleFreq - 20.0)) / (250.0 - (0.75 * MiddleFreq - 20.0)), animated: true)
+//        SleepProgressView.text = String((freq - (0.75 * MiddleFreq - 20.0)) / (250.0 - (0.75 * MiddleFreq - 20.0)) * 100)
 //        
 //        if freq >= 0.75 * MiddleFreq - 20.0 && freq <= 0.75 * MiddleFreq + 20.0 {
 //            BrainMode.text = "警戒状態です"
 //            status = .Alert
-//        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 20 {
+//        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 20.0 {
 //            BrainMode.text = "正常状態です"
 //            status = .Normal
-//        } else if freq >= MiddleFreq + 20 && freq < MiddleFreq + 30 {
+//        } else if freq >= MiddleFreq + 20.0 && freq < MiddleFreq + 40.0 {
 //            BrainMode.text = "微・危険状態です"
-//            Alert = "眠気を少し感知しました、窓を開けましょう"
+//            Alert = "眠気を感知しました、休憩しましょう。危険です。"
 //            if !speech.speaking {
 //                speech.speakUtterance(speechUtterance)
 //            }
 //            status = .Danger
-//        } else if freq >= MiddleFreq + 30 {
+//        } else if freq >= MiddleFreq + 40.0 {
 //            BrainMode.text = "超・危険状態です"
 //            status = .Death
 //        }
