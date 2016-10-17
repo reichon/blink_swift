@@ -168,81 +168,79 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate, MEMELibDele
 //        }
         
         MiddleFreq = 163.0
-        freq = 200.0
         
         // 5分経ったあとだけ
         
-//        if timer == nil {
-//            timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(add), userInfo: nil, repeats: true)
-//        }
-//        
-//        if Float(data.blinkSpeed) > 70 {
-//            msecs.append(Float(data.blinkSpeed))
-//            
-//        }
-//        
-//        freq = msecs.reduce(0, combine: +) / Float(msecs.count)
- 
-        let speechUtterance = AVSpeechUtterance(string: Alert)
-        speechUtterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
-
-        SleepProgress.setProgress((freq - (0.75 * MiddleFreq - 20.0)) / 100.0, animated: true)
-        SleepProgressView.text = String(freq - (0.75 * MiddleFreq - 20.0))
-
-//         実際
-        if freq >= 0.75 * MiddleFreq - 20.0 && freq <= 0.75 * MiddleFreq + 20.0 {
-            BrainMode.text = "警戒状態です"
-            status = .Alert
-        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 5 {
-            BrainMode.text = "正常状態です"
-            status = .Normal
-        } else if freq >= MiddleFreq + 5 && freq < MiddleFreq + 20 {
-            BrainMode.text = "微・危険状態です"
-            Alert = "眠気を少し感知しました、窓を開けましょう"
-            if !speech.speaking {
-                speech.speakUtterance(speechUtterance)
-            }
-            status = .Danger
-        } else if freq >= MiddleFreq + 20 {
-            BrainMode.text = "超・危険状態です"
-            status = .Death
+        if timer == nil {
+            timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: #selector(add), userInfo: nil, repeats: true)
         }
         
-    }
-    
-//    func add(data: MEMERealTimeData!) {
-//        
-//        print(MiddleFreq, freq)
-//        print(msecs)
-//        
-//        msecs = []
-//        
+        if Float(data.blinkSpeed) > 70 {
+            msecs.append(Float(data.blinkSpeed))
+            
+        }
+
+        freq = msecs.reduce(0, combine: +) / Float(msecs.count)
+//
 //        let speechUtterance = AVSpeechUtterance(string: Alert)
 //        speechUtterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
-//        
-//        
-//        // 実際
-//        SleepProgress.setProgress((freq - (0.75 * MiddleFreq - 20.0)) / (250.0 - (0.75 * MiddleFreq - 20.0)), animated: true)
-//        SleepProgressView.text = String((freq - (0.75 * MiddleFreq - 20.0)) / (250.0 - (0.75 * MiddleFreq - 20.0)) * 100)
-//        
+//
+//        SleepProgress.setProgress((freq - (0.75 * MiddleFreq - 20.0)) / 100.0, animated: true)
+//        SleepProgressView.text = String(freq - (0.75 * MiddleFreq - 20.0))
+//
 //        if freq >= 0.75 * MiddleFreq - 20.0 && freq <= 0.75 * MiddleFreq + 20.0 {
 //            BrainMode.text = "警戒状態です"
 //            status = .Alert
-//        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 20.0 {
+//        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 5 {
 //            BrainMode.text = "正常状態です"
 //            status = .Normal
-//        } else if freq >= MiddleFreq + 20.0 && freq < MiddleFreq + 40.0 {
+//        } else if freq >= MiddleFreq + 5 && freq < MiddleFreq + 20 {
 //            BrainMode.text = "微・危険状態です"
-//            Alert = "眠気を感知しました、休憩しましょう。危険です。"
+//            Alert = "眠気を少し感知しました、窓を開けましょう"
 //            if !speech.speaking {
 //                speech.speakUtterance(speechUtterance)
 //            }
 //            status = .Danger
-//        } else if freq >= MiddleFreq + 40.0 {
+//        } else if freq >= MiddleFreq + 20 {
 //            BrainMode.text = "超・危険状態です"
 //            status = .Death
 //        }
-//    }
+        
+    }
+    
+    func add(data: MEMERealTimeData!) {
+        
+        print(MiddleFreq, freq)
+        print(msecs)
+        
+        msecs = []
+        
+        let speechUtterance = AVSpeechUtterance(string: Alert)
+        speechUtterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
+        
+        
+        // 実際
+        SleepProgress.setProgress((freq - (0.75 * MiddleFreq - 20.0)) / (250.0 - (0.75 * MiddleFreq - 20.0)), animated: true)
+        SleepProgressView.text = String((freq - (0.75 * MiddleFreq - 20.0)) / (250.0 - (0.75 * MiddleFreq - 20.0)) * 100)
+        
+        if freq >= 0.75 * MiddleFreq - 20.0 && freq <= 0.75 * MiddleFreq + 20.0 {
+            BrainMode.text = "警戒状態です"
+            status = .Alert
+        } else if freq > 0.75 * MiddleFreq + 20.0 && freq < MiddleFreq + 20.0 {
+            BrainMode.text = "正常状態です"
+            status = .Normal
+        } else if freq >= MiddleFreq + 20.0 && freq < MiddleFreq + 40.0 {
+            BrainMode.text = "微・危険状態です"
+            Alert = "眠気を感知しました、休憩しましょう。危険です。"
+            if !speech.speaking {
+                speech.speakUtterance(speechUtterance)
+            }
+            status = .Danger
+        } else if freq >= MiddleFreq + 40.0 {
+            BrainMode.text = "超・危険状態です"
+            status = .Death
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
